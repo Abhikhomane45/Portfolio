@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abhijeet Khomane | Data Analyst & IoT Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         /* Modern CSS Variables */
         :root {
@@ -34,7 +37,12 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-weight: 700;
             line-height: 1.2;
         }
@@ -259,8 +267,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         /* About Section */
@@ -611,25 +626,29 @@
 
         /* Responsive Design */
         @media (max-width: 992px) {
-            .hero-container, .about-container, .contact-container {
+
+            .hero-container,
+            .about-container,
+            .contact-container {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
-            .hero-action, .social-links {
+
+            .hero-action,
+            .social-links {
                 justify-content: center;
             }
-            
+
             .timeline::after {
                 left: 31px;
             }
-            
+
             .timeline-item {
                 width: 100%;
                 padding-left: 70px;
                 padding-right: 25px;
             }
-            
+
             .timeline-item:nth-child(even) {
                 left: 0;
             }
@@ -639,15 +658,15 @@
             .hero-left h1 {
                 font-size: 2.5rem;
             }
-            
+
             .hero-title {
                 font-size: 2rem;
             }
-            
+
             section {
                 padding: 4rem 0;
             }
-            
+
             .nav-menu {
                 position: fixed;
                 top: 0;
@@ -661,16 +680,16 @@
                 transition: var(--transition);
                 box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
             }
-            
+
             .nav-menu.active {
                 right: 0;
             }
-            
+
             .nav-toggle {
                 display: block;
                 z-index: 1001;
             }
-            
+
             .about-info {
                 grid-template-columns: 1fr;
             }
@@ -680,26 +699,27 @@
             .hero-left h1 {
                 font-size: 2rem;
             }
-            
+
             .hero-title {
                 font-size: 1.8rem;
             }
-            
+
             .section-title h2 {
                 font-size: 2rem;
             }
-            
+
             .hero-action {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .skill-list {
                 justify-content: center;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="back-to-top">
         <i class="fas fa-arrow-up"></i>
@@ -715,6 +735,7 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-toggle">
@@ -725,32 +746,41 @@
 
     <header>
         <div class="container hero-container">
-            <div class="hero-left">
+            <div class="hero-left" data-aos="fade-right" data-aos-duration="1000">
                 <h1>Hello, I'm</h1>
                 <h2 class="hero-title">Abhijeet <span>Khomane</span></h2>
                 <div class="hero-tag">Data Analyst & IoT Developer</div>
-                <p>Expertise in Python, Power BI, Azure, and data visualization. Experienced in data preprocessing, embedded systems, and real-time IoT solutions integrating computer vision.</p>
+                <p>B.Tech student specializing in Data Analytics and Business Intelligence, with hands-on experience in
+                    Power BI, Python, SQL, and Microsoft Azure. Skilled in transforming complex datasets into clear,
+                    actionable insights through interactive dashboards and visual reports.</p>
                 <div class="hero-action">
                     <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="#" class="btn btn-outline">Download CV</a>
+                    <a href="#" class="btn btn-outline"
+                        style="border: 2px solid var(--primary); color: var(--primary); padding: 0.8rem 1.8rem; border-radius: 50px; font-weight: 600;">Download
+                        CV</a>
                 </div>
             </div>
-            <div class="hero-right">
-    <img src="Myimage.jpg" alt="Abhijeet Khomane" class="hero-img">
-</div>
+            <div class="hero-right" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <img src="Myimage.jpg" alt="Abhijeet Khomane" class="hero-img">
+            </div>
+        </div>
     </header>
 
     <section id="about">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>About Me</h2>
             </div>
             <div class="about-container">
-                <div class="about-content">
-                    <p>I'm a dedicated <span>Data Analyst and IoT Developer</span> with expertise in transforming complex data into actionable insights and building innovative IoT solutions. My work focuses on delivering analytics dashboards and IoT monitoring systems that improve data accuracy by 95% and reduce process times by up to 60%.</p>
-                    <p>Currently pursuing my B.Tech in Electronics and Computer Engineering, I bring a unique combination of hardware and software knowledge to every project.</p>
+                <div class="about-content" data-aos="fade-right" data-aos-duration="1000">
+                    <p>I'm a dedicated <span>Data Analyst and IoT Developer</span> with expertise in transforming
+                        complex data into actionable insights and building innovative IoT solutions. My work focuses on
+                        delivering analytics dashboards and scalable models to support data-driven decision-making and
+                        performance tracking.</p>
+                    <p>Currently pursuing my B.Tech in Electronics and Computer Engineering, I bring a unique
+                        combination of hardware and software knowledge to every project.</p>
                 </div>
-                <div class="about-info">
+                <div class="about-info" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <div class="info-item">
                         <i class="fas fa-envelope"></i>
                         <h5>EMAIL</h5>
@@ -764,12 +794,13 @@
                     <div class="info-item">
                         <i class="fab fa-linkedin"></i>
                         <h5>LINKEDIN</h5>
-                        <p>abhijeet-khomane</p>
+                        <p><a href="https://linkedin.com/in/abhijeet-khomane-08a202275"
+                                target="_blank">abhijeet-khomane</a></p>
                     </div>
                     <div class="info-item">
                         <i class="fab fa-github"></i>
                         <h5>GITHUB</h5>
-                        <p>Abhikhomane45</p>
+                        <p><a href="https://github.com/Abhikhomane45" target="_blank">Abhikhomane45</a></p>
                     </div>
                 </div>
             </div>
@@ -778,20 +809,19 @@
 
     <section id="skills">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>My Skills</h2>
             </div>
             <div class="skills-container">
-                <div class="skill-category">
+                <div class="skill-category" data-aos="zoom-in" data-aos-duration="800">
                     <h3>Programming</h3>
                     <div class="skill-list">
                         <div class="skill-item">Python</div>
                         <div class="skill-item">Java</div>
                         <div class="skill-item">JavaScript</div>
-                        <div class="skill-item">C++</div>
                     </div>
                 </div>
-                <div class="skill-category">
+                <div class="skill-category" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
                     <h3>Data & Analytics</h3>
                     <div class="skill-list">
                         <div class="skill-item">Power BI</div>
@@ -800,27 +830,29 @@
                         <div class="skill-item">NumPy</div>
                         <div class="skill-item">Matplotlib</div>
                         <div class="skill-item">Seaborn</div>
-                        <div class="skill-item">TensorFlow</div>
-                        <div class="skill-item">OpenCV</div>
                     </div>
                 </div>
-                <div class="skill-category">
+                <div class="skill-category" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
                     <h3>Web Development</h3>
                     <div class="skill-list">
                         <div class="skill-item">HTML</div>
                         <div class="skill-item">CSS</div>
                         <div class="skill-item">React</div>
+                        <div class="skill-item">NodeJs</div>
                         <div class="skill-item">Flask</div>
                         <div class="skill-item">Git</div>
                         <div class="skill-item">GitHub</div>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <h3>Databases</h3>
+                <div class="skill-category" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+                    <h3>Databases & Tools</h3>
                     <div class="skill-list">
                         <div class="skill-item">MySQL</div>
                         <div class="skill-item">MongoDB</div>
-                        <div class="skill-item">RDBMS</div>
+                        <div class="skill-item">Linux</div>
+                        <div class="skill-item">VS Code</div>
+                        <div class="skill-item">IntelliJ IDEA</div>
+                        <div class="skill-item">Cisco Packet Tracer</div>
                     </div>
                 </div>
             </div>
@@ -829,30 +861,34 @@
 
     <section id="experience">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>Experience & Education</h2>
             </div>
             <div class="timeline">
-                <div class="timeline-item">
+                <div class="timeline-item" data-aos="fade-up">
                     <div class="timeline-content">
                         <h3>Data Analyst Intern</h3>
                         <div class="timeline-date">Jan 2025 – Mar 2025</div>
                         <p>KasNet Technologies (Hybrid)</p>
                         <ul>
-                            <li>Designed and deployed 3+ interactive Power BI dashboards with DAX, enabling KPI tracking across multiple business units</li>
-                            <li>Processed and cleaned 50,000+ rows of data using Python and SQL, increasing reporting accuracy by 95%</li>
-                            <li>Created data visualizations that reduced decision-making time by 30%</li>
+                            <li>Built and deployed 3+ interactive Power BI dashboards using DAX, enabling stakeholders
+                                to track KPIs and trends efficiently.</li>
+                            <li>Cleaned and transformed 50,000+ rows of raw data using Python (Pandas, NumPy) and SQL,
+                                improving data accuracy by 95%.</li>
+                            <li>Designed visualizations to highlight key insights, boosting decision-making speed by
+                                30%.</li>
+                            <li>Conducted exploratory data analysis (EDA) to identify patterns and trends, leading to
+                                actionable business recommendations.</li>
                         </ul>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
                     <div class="timeline-content">
                         <h3>B.Tech in Electronics and Computer Engineering</h3>
                         <div class="timeline-date">Mar 2022 – May 2026</div>
                         <p>PES's Modern College of Engineering, Pune</p>
                         <ul>
-                            <li>T.E. CGPA: 9.48/10 | S.E. CGPA: 8/10</li>
-                            <li>Relevant Coursework: Computer Architecture, Computer Networks, Embedded Systems, Digital Communication, Operating Systems, Computational Theory</li>
+                            <li>T.E. CGPA: 9.48/10 — Aggregate CGPA: 8.5/10</li>
                         </ul>
                     </div>
                 </div>
@@ -862,12 +898,13 @@
 
     <section id="projects">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>My Projects</h2>
             </div>
             <div class="projects-container">
-                <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=200&q=80" alt="IoT Plant Disease Detection" class="project-img">
+                <div class="project-card" data-aos="fade-up" data-aos-duration="800">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=200&q=80"
+                        alt="IoT Plant Disease Detection" class="project-img">
                     <div class="project-content">
                         <h3>IoT-based Plant Disease Detection System</h3>
                         <div class="project-tags">
@@ -875,31 +912,102 @@
                             <span class="project-tag">OpenCV</span>
                             <span class="project-tag">ESP32-CAM</span>
                         </div>
-                        <p>Built an IoT system using ESP32-CAM, sensors, and OpenCV to detect and classify plant diseases from leaf images with 90%+ accuracy.</p>
+                        <ul style="padding-left: 20px; font-size: 0.95rem; margin-bottom: 1rem; color: #444;">
+                            <li style="list-style-type: disc;">Applied OpenCV achieving over 90% detection accuracy.
+                            </li>
+                            <li style="list-style-type: disc;">Integrated temp/humidity sensors with visual data.</li>
+                            <li style="list-style-type: disc;">Reduced detection time for farmers by 60%.</li>
+                        </ul>
+                        <a href="https://github.com/Abhikhomane45/IoT-based-Plant-Disease-Recognition-System-Using-ESP32-CAM"
+                            target="_blank" style="color: var(--primary); font-weight: bold;"><i
+                                class="fab fa-github"></i> View Project</a>
                     </div>
                 </div>
-                <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=200&q=80" alt="Task Management App" class="project-img">
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                    <img src="coding.png" alt="Power BI Dashboard" class="project-img">
                     <div class="project-content">
-                        <h3>TaskFlow – Flask-based Task Management Application</h3>
+                        <h3>Global Sales Performance Analysis</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">Power BI</span>
+                            <span class="project-tag">DAX</span>
+                            <span class="project-tag">Data Viz</span>
+                        </div>
+                        <ul style="padding-left: 20px; font-size: 0.95rem; margin-bottom: 1rem; color: #444;">
+                            <li style="list-style-type: disc;">Visualized core metrics (sales, profit) for 2012-2015.
+                            </li>
+                            <li style="list-style-type: disc;">Implemented dynamic filters using DAX & Power Query.</li>
+                            <li style="list-style-type: disc;">Identified a 90% growth trend in key regions.</li>
+                        </ul>
+                        <a href="#" style="color: var(--primary); font-weight: bold;"><i class="fas fa-chart-line"></i>
+                            Dashboard</a>
+                    </div>
+                </div>
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=200&q=80"
+                        alt="Task Management App" class="project-img">
+                    <div class="project-content">
+                        <h3>TaskFlow – Task Manager Web App</h3>
                         <div class="project-tags">
                             <span class="project-tag">Flask</span>
                             <span class="project-tag">SQLite</span>
                             <span class="project-tag">Bootstrap</span>
                         </div>
-                        <p>Developed a Flask web application with CRUD features and SQLite database to manage daily tasks with a responsive Bootstrap UI.</p>
+                        <ul style="padding-left: 20px; font-size: 0.95rem; margin-bottom: 1rem; color: #444;">
+                            <li style="list-style-type: disc;">Flask web app with secure login & CRUD.</li>
+                            <li style="list-style-type: disc;">SQLite for persistent data & Bootstrap for UI.</li>
+                            <li style="list-style-type: disc;">Improved task optimization & efficiency by 40%.</li>
+                        </ul>
+                        <a href="https://task-flow-flask-based-task-manager.vercel.app/" target="_blank"
+                            style="color: var(--primary); font-weight: bold;"><i class="fas fa-external-link-alt"></i>
+                            Live Demo</a>
                     </div>
                 </div>
-                <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=200&q=80" alt="IPL Data Analysis" class="project-img">
-                    <div class="project-content">
-                        <h3>IPL Data Analysis and Visualization</h3>
-                        <div class="project-tags">
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">Power BI</span>
-                            <span class="project-tag">Data Visualization</span>
-                        </div>
-                        <p>Processed and cleaned 100,000+ IPL match records using Python and designed Power BI dashboards to visualize team performance and player statistics.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Certifications & Awards</h2>
+            </div>
+            <div class="about-container" style="grid-template-columns: 1fr;">
+                <div class="about-info" data-aos="fade-up" style="grid-template-columns: 1fr; margin-top: 0;">
+                    <div class="info-item" style="text-align: left; padding: 2rem;">
+                        <ul style="list-style-type: none; padding: 0;">
+                            <li
+                                style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div><strong style="color: var(--primary); font-size: 1.1rem;">Microsoft Azure
+                                        Fundamentals (AZ-900)</strong><br><span style="color: #666;">Microsoft</span>
+                                </div>
+                                <div style="color: var(--accent); font-weight: 600;">Mar 2025</div>
+                            </li>
+                            <li
+                                style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div><strong style="color: var(--primary); font-size: 1.1rem;">Developing Soft
+                                        Skills</strong><br><span style="color: #666;">NPTEL</span></div>
+                                <div style="color: var(--accent); font-weight: 600;">Aug 2024</div>
+                            </li>
+                            <li
+                                style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div><strong style="color: var(--primary); font-size: 1.1rem;">Java, C++,
+                                        RDBMS</strong><br><span style="color: #666;">Spoken Tutorial, IIT Bombay</span>
+                                </div>
+                            </li>
+                            <li
+                                style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div><strong style="color: var(--primary); font-size: 1.1rem;">SQL
+                                        (Basic)</strong><br><span style="color: #666;">HackerRank</span></div>
+                                <div style="color: var(--accent); font-weight: 600;">Jul 2025</div>
+                            </li>
+                            <li
+                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div><strong style="color: var(--primary); font-size: 1.1rem;">First Runner-Up,
+                                        AiZureStack Hackathon</strong><br><span style="color: #666;">CertifyO</span>
+                                </div>
+                                <div style="color: var(--accent); font-weight: 600;">2025</div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -987,6 +1095,8 @@
         </div>
     </footer>
 
+    <!-- AOS JS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Navigation toggle
         const navToggle = document.querySelector('.nav-toggle');
@@ -1031,31 +1141,14 @@
             contactForm.reset();
         });
 
-        // Animation on scroll
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.skill-category, .project-card, .timeline-content');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = 1;
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        };
-
-        // Initialize elements for animation
-        document.querySelectorAll('.skill-category, .project-card, .timeline-content').forEach(element => {
-            element.style.opacity = 0;
-            element.style.transform = 'translateY(20px)';
-            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        // Initialize AOS Animation Library
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800,
+            easing: 'ease-in-out'
         });
-
-        window.addEventListener('scroll', animateOnScroll);
-        // Initial check on page load
-        window.addEventListener('load', animateOnScroll);
     </script>
 </body>
+
 </html>
