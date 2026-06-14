@@ -1,819 +1,451 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abhijeet Khomane | Data Analyst & IoT Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<style>
-:root {
-  --ink: #0e0e12;
-  --ink2: #3a3a4a;
-  --muted: #7b7b8e;
-  --light: #f7f6f2;
-  --white: #ffffff;
-  --accent: #1a1a2e;
-  --lime: #c8f03d;
-  --lime-dark: #9fbe1a;
-  --teal: #0fbdad;
-  --rose: #f25c7a;
-  --card: #ffffff;
-  --border: rgba(14,14,18,0.08);
-  --nav-h: 72px;
-  --sans: 'DM Sans', sans-serif;
-  --display: 'Syne', sans-serif;
-  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-html { scroll-behavior: smooth; font-size: 16px; }
-
-body {
-  font-family: var(--sans);
-  background: var(--light);
-  color: var(--ink);
-  overflow-x: hidden;
-  cursor: none;
-}
-
-/* CURSOR */
-.cursor { position:fixed; width:10px; height:10px; background:var(--ink); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:transform 0.1s, width 0.3s, height 0.3s, background 0.3s; }
-.cursor-ring { position:fixed; width:36px; height:36px; border:1.5px solid var(--ink); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all 0.18s var(--ease); }
-.cursor-ring.hover { width:56px; height:56px; background:rgba(200,240,61,0.15); border-color:var(--lime); }
-
-/* SCROLL PROGRESS */
-.progress-bar { position:fixed; top:0; left:0; height:3px; background:var(--lime); z-index:9999; width:0%; transition:width 0.1s linear; }
-
-/* NAV */
-nav {
-  position: fixed; top:0; left:0; width:100%; z-index:900;
-  height: var(--nav-h);
-  display: flex; align-items: center;
-  transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
-}
-nav.scrolled { background: rgba(247,246,242,0.85); backdrop-filter: blur(18px); box-shadow: 0 1px 0 var(--border); }
-.nav-inner { width:90%; max-width:1280px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
-.logo { font-family: var(--display); font-weight:800; font-size:1.25rem; color:var(--ink); text-decoration:none; letter-spacing:-0.02em; }
-.logo span { display:inline-block; background:var(--ink); color:var(--lime); padding:2px 8px; border-radius:4px; margin-left:2px; }
-.nav-links { display:flex; gap:2.5rem; list-style:none; }
-.nav-links a { font-size:0.875rem; font-weight:500; color:var(--ink2); text-decoration:none; letter-spacing:0.01em; position:relative; transition:color 0.2s; }
-.nav-links a.active, .nav-links a:hover { color:var(--ink); }
-.nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--lime); border-radius:2px; transition:width 0.3s var(--ease); }
-.nav-links a.active::after, .nav-links a:hover::after { width:100%; }
-.nav-toggle { display:none; background:none; border:none; cursor:none; font-size:1.4rem; color:var(--ink); }
-
-/* HERO */
-.hero {
-  min-height:100vh; display:flex; align-items:center;
-  padding-top: var(--nav-h);
-  position:relative; overflow:hidden;
-}
-.hero-bg { position:absolute; inset:0; z-index:0; }
-.hero-blob {
-  position:absolute; border-radius:50%;
-  background: var(--lime); opacity:0.12; filter:blur(80px);
-}
-.hero-blob.b1 { width:500px; height:500px; right:-100px; top:-100px; }
-.hero-blob.b2 { width:300px; height:300px; left:-50px; bottom:50px; background:var(--teal); }
-.hero-inner { position:relative; z-index:1; width:90%; max-width:1280px; margin:0 auto; padding:4rem 0; display:grid; grid-template-columns:1fr 420px; gap:4rem; align-items:center; }
-.hero-badge { display:inline-flex; align-items:center; gap:8px; background:var(--white); border:1px solid var(--border); border-radius:100px; padding:6px 16px 6px 6px; font-size:0.8rem; font-weight:500; margin-bottom:2rem; }
-.hero-badge-dot { width:22px; height:22px; background:var(--lime); border-radius:50%; display:flex; align-items:center; justify-content:center; }
-.hero-badge-dot::before { content:''; width:8px; height:8px; background:var(--ink); border-radius:50%; }
-.hero-title { font-family:var(--display); font-size:clamp(3rem, 6vw, 5.5rem); font-weight:800; line-height:1.02; letter-spacing:-0.04em; margin-bottom:1.5rem; }
-.hero-title .line { display:block; overflow:hidden; }
-.hero-title .word { display:inline-block; transform:translateY(110%); animation:wordUp 0.9s var(--ease) forwards; }
-.hero-title .word:nth-child(2) { animation-delay:0.1s; }
-.hero-title .accent-word { color:var(--lime); background:var(--ink); padding:0 12px; border-radius:8px; }
-@keyframes wordUp { to { transform:translateY(0); } }
-.hero-type { font-family:var(--display); font-size:clamp(1.5rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.02em; margin-bottom:1.5rem; color:var(--ink2); min-height:2.5rem; }
-.hero-type .typed { color:var(--teal); border-right:2px solid var(--teal); padding-right:3px; animation: blink 0.75s step-end infinite; }
-@keyframes blink { 50% { border-color:transparent; } }
-.hero-desc { font-size:1.05rem; line-height:1.7; color:var(--ink2); max-width:520px; margin-bottom:2.5rem; opacity:0; animation:fadeIn 0.8s 0.8s forwards; }
-@keyframes fadeIn { to { opacity:1; } }
-.hero-actions { display:flex; gap:1rem; flex-wrap:wrap; opacity:0; animation:fadeIn 0.8s 1s forwards; }
-.btn { display:inline-flex; align-items:center; gap:8px; padding:0.85rem 1.75rem; border-radius:100px; font-family:var(--sans); font-weight:500; font-size:0.9375rem; text-decoration:none; transition:all 0.25s var(--ease); cursor:none; border:none; }
-.btn-dark { background:var(--ink); color:var(--lime); }
-.btn-dark:hover { background:#2a2a3e; transform:translateY(-2px); }
-.btn-outline { background:transparent; color:var(--ink); border:1.5px solid var(--border); }
-.btn-outline:hover { border-color:var(--ink); background:var(--white); transform:translateY(-2px); }
-.hero-img-wrap { position:relative; display:flex; justify-content:center; align-items:center; opacity:0; animation:fadeIn 0.9s 0.5s forwards; }
-.hero-img-ring { position:absolute; width:340px; height:340px; border-radius:50%; border:2px dashed rgba(200,240,61,0.4); animation:spin 20s linear infinite; }
-.hero-img-ring::before { content:''; position:absolute; top:-6px; left:50%; width:12px; height:12px; background:var(--lime); border-radius:50%; }
-@keyframes spin { to { transform:rotate(360deg); } }
-.hero-img { width:300px; height:300px; border-radius:50%; object-fit:cover; border:6px solid var(--white); box-shadow:0 20px 60px rgba(0,0,0,0.15); animation:float 4s ease-in-out infinite; }
-@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
-.hero-stats { position:absolute; background:var(--white); border:1px solid var(--border); border-radius:14px; padding:12px 18px; box-shadow:0 8px 30px rgba(0,0,0,0.08); }
-.hero-stats.s1 { bottom:30px; left:-20px; }
-.hero-stats.s2 { top:40px; right:-20px; }
-.stat-num { font-family:var(--display); font-size:1.4rem; font-weight:800; color:var(--ink); }
-.stat-label { font-size:0.75rem; color:var(--muted); }
-
-/* SECTION BASE */
-section { padding:7rem 0; }
-.section-wrap { width:90%; max-width:1280px; margin:0 auto; }
-.sec-label { display:inline-flex; align-items:center; gap:8px; font-size:0.75rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:1rem; }
-.sec-label::before { content:''; width:24px; height:2px; background:var(--lime); border-radius:2px; }
-.sec-title { font-family:var(--display); font-size:clamp(2rem, 4vw, 3.2rem); font-weight:800; letter-spacing:-0.03em; line-height:1.1; margin-bottom:1rem; }
-.sec-divider { width:48px; height:4px; background:var(--ink); border-radius:2px; margin-bottom:3.5rem; }
-
-/* REVEAL ANIMATION */
-.reveal { opacity:0; transform:translateY(32px); transition:opacity 0.7s var(--ease), transform 0.7s var(--ease); }
-.reveal.visible { opacity:1; transform:none; }
-.reveal-delay-1 { transition-delay:0.1s; }
-.reveal-delay-2 { transition-delay:0.2s; }
-.reveal-delay-3 { transition-delay:0.3s; }
-.reveal-delay-4 { transition-delay:0.4s; }
-
-/* ABOUT */
-#about { background:var(--white); }
-.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
-.about-text p { font-size:1.05rem; line-height:1.8; color:var(--ink2); margin-bottom:1.2rem; }
-.about-text strong { color:var(--ink); }
-.about-cards { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:2rem; }
-.about-card { background:var(--light); border-radius:16px; padding:1.5rem; transition:transform 0.25s var(--ease); }
-.about-card:hover { transform:translateY(-4px); }
-.about-card i { font-size:1.4rem; color:var(--teal); margin-bottom:0.75rem; display:block; }
-.about-card h5 { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
-.about-card p { font-size:0.875rem; color:var(--ink); font-weight:500; }
-.about-card a { color:var(--teal); text-decoration:none; }
-.about-card a:hover { text-decoration:underline; }
-.about-img-wrap { position:relative; }
-.about-img { width:100%; max-width:420px; border-radius:24px; object-fit:cover; aspect-ratio:3/4; display:block; }
-.about-img-tag { position:absolute; bottom:24px; right:-20px; background:var(--ink); color:var(--white); border-radius:14px; padding:16px 20px; }
-.about-img-tag .num { font-family:var(--display); font-size:2rem; font-weight:800; color:var(--lime); }
-.about-img-tag .txt { font-size:0.75rem; color:rgba(255,255,255,0.7); }
-
-/* SKILLS */
-#skills { background:var(--light); }
-.skills-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1.5rem; }
-.skill-card { background:var(--white); border-radius:20px; padding:2rem; border:1px solid var(--border); transition:all 0.3s var(--ease); }
-.skill-card:hover { transform:translateY(-6px); box-shadow:0 20px 40px rgba(0,0,0,0.08); border-color:transparent; }
-.skill-card-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem; font-size:1.3rem; }
-.skill-card-icon.ic-purple { background:#eeedfe; color:#534ab7; }
-.skill-card-icon.ic-teal { background:#e1f5ee; color:#0f6e56; }
-.skill-card-icon.ic-coral { background:#faece7; color:#993c1d; }
-.skill-card-icon.ic-blue { background:#e6f1fb; color:#185fa5; }
-.skill-card h3 { font-family:var(--display); font-size:1rem; font-weight:700; margin-bottom:1.25rem; }
-.skill-pills { display:flex; flex-wrap:wrap; gap:8px; }
-.pill { display:inline-block; padding:5px 14px; background:var(--light); border-radius:100px; font-size:0.8125rem; font-weight:500; color:var(--ink2); transition:all 0.2s; }
-.skill-card:hover .pill { background:var(--ink); color:var(--lime); }
-
-/* EXPERIENCE */
-#experience { background:var(--white); }
-.timeline { position:relative; max-width:780px; }
-.timeline::before { content:''; position:absolute; left:20px; top:8px; bottom:8px; width:2px; background:linear-gradient(to bottom, var(--lime), var(--teal)); border-radius:2px; }
-.tl-item { position:relative; padding-left:60px; margin-bottom:3rem; }
-.tl-dot { position:absolute; left:10px; top:6px; width:22px; height:22px; border-radius:50%; background:var(--white); border:3px solid var(--lime); z-index:1; }
-.tl-dot.edu { border-color:var(--teal); }
-.tl-card { background:var(--light); border-radius:20px; padding:2rem; border:1px solid var(--border); transition:all 0.3s var(--ease); }
-.tl-card:hover { transform:translateX(6px); box-shadow:0 12px 30px rgba(0,0,0,0.07); }
-.tl-date { display:inline-block; font-size:0.75rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--white); background:var(--ink); border-radius:100px; padding:4px 14px; margin-bottom:1rem; }
-.tl-date.edu-date { background:var(--teal); }
-.tl-card h3 { font-family:var(--display); font-size:1.2rem; font-weight:700; margin-bottom:4px; }
-.tl-card .org { font-size:0.9rem; color:var(--muted); margin-bottom:1rem; }
-.tl-card ul { padding-left:1.2rem; }
-.tl-card li { font-size:0.9375rem; line-height:1.65; color:var(--ink2); margin-bottom:0.5rem; list-style:disc; }
-.tl-card li::marker { color:var(--lime); }
-.tl-card .cgpa { display:inline-flex; align-items:center; gap:8px; background:var(--white); border-radius:10px; padding:10px 16px; font-size:0.875rem; font-weight:600; margin-top:0.5rem; }
-.tl-card .cgpa span { color:var(--teal); font-family:var(--display); font-size:1.1rem; }
-
-/* PROJECTS */
-#projects { background:var(--light); }
-.projects-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:1.5rem; }
-.proj-card { background:var(--white); border-radius:24px; overflow:hidden; border:1px solid var(--border); transition:all 0.35s var(--ease); }
-.proj-card:hover { transform:translateY(-8px); box-shadow:0 30px 60px rgba(0,0,0,0.1); }
-.proj-img-wrap { position:relative; overflow:hidden; height:200px; }
-.proj-img-wrap img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s var(--ease); }
-.proj-card:hover .proj-img-wrap img { transform:scale(1.07); }
-.proj-overlay { position:absolute; inset:0; background:rgba(14,14,18,0.7); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s; }
-.proj-card:hover .proj-overlay { opacity:1; }
-.proj-overlay span { color:var(--lime); font-weight:600; font-size:0.9rem; border:1.5px solid var(--lime); border-radius:100px; padding:8px 20px; }
-.proj-body { padding:1.75rem; }
-.proj-body h3 { font-family:var(--display); font-size:1.1rem; font-weight:700; margin-bottom:0.75rem; }
-.proj-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:1rem; }
-.proj-tag { font-size:0.75rem; font-weight:600; padding:3px 12px; background:var(--light); border-radius:100px; color:var(--ink2); }
-.proj-body ul { padding-left:1.1rem; margin-bottom:1.25rem; }
-.proj-body li { font-size:0.875rem; color:var(--ink2); line-height:1.6; margin-bottom:4px; list-style:disc; }
-.proj-body li::marker { color:var(--teal); }
-.proj-link { display:inline-flex; align-items:center; gap:6px; font-size:0.875rem; font-weight:600; color:var(--ink); text-decoration:none; transition:gap 0.2s; }
-.proj-link:hover { gap:10px; color:var(--teal); }
-.proj-link i { font-size:0.75rem; }
-
-/* CERTIFICATIONS */
-#certifications { background:var(--white); }
-.cert-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:1rem; }
-.cert-card { background:var(--light); border-radius:16px; padding:1.5rem; display:flex; align-items:flex-start; gap:1rem; transition:all 0.25s var(--ease); border:1px solid transparent; }
-.cert-card:hover { background:var(--white); border-color:var(--border); transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.06); }
-.cert-icon { width:44px; height:44px; min-width:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; }
-.cert-icon.azure { background:#e6f1fb; color:#185fa5; }
-.cert-icon.nptel { background:#eeedfe; color:#534ab7; }
-.cert-icon.iit { background:#e1f5ee; color:#0f6e56; }
-.cert-icon.hack { background:#faece7; color:#993c1d; }
-.cert-icon.award { background:#faeeda; color:#854f0b; }
-.cert-body h4 { font-family:var(--display); font-size:0.975rem; font-weight:700; margin-bottom:4px; }
-.cert-body .issuer { font-size:0.8125rem; color:var(--muted); }
-.cert-body .date { font-size:0.75rem; font-weight:600; color:var(--teal); margin-top:4px; display:block; }
-
-/* CONTACT */
-#contact { background:var(--light); }
-.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
-.contact-info h3 { font-family:var(--display); font-size:1.6rem; font-weight:800; margin-bottom:1rem; letter-spacing:-0.02em; }
-.contact-info p { font-size:1rem; color:var(--ink2); line-height:1.7; margin-bottom:2rem; }
-.contact-items { display:flex; flex-direction:column; gap:1rem; }
-.contact-item { display:flex; align-items:center; gap:1rem; }
-.c-icon { width:44px; height:44px; border-radius:12px; background:var(--white); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:1rem; color:var(--ink2); }
-.c-text { font-size:0.9375rem; color:var(--ink2); }
-.c-text a { color:var(--teal); text-decoration:none; }
-.contact-form { background:var(--white); border-radius:24px; padding:2.5rem; border:1px solid var(--border); }
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-.form-group { margin-bottom:1.25rem; position:relative; }
-.form-group label { display:block; font-size:0.8rem; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
-.form-group input, .form-group textarea {
-  width:100%; padding:0.85rem 1.1rem; border-radius:12px;
-  border:1.5px solid var(--border); background:var(--light);
-  font-family:var(--sans); font-size:0.9375rem; color:var(--ink);
-  transition:border-color 0.2s, box-shadow 0.2s; outline:none;
-}
-.form-group input:focus, .form-group textarea:focus {
-  border-color:var(--ink); background:var(--white);
-  box-shadow:0 0 0 4px rgba(14,14,18,0.06);
-}
-.form-group textarea { min-height:130px; resize:vertical; }
-.btn-send { width:100%; justify-content:center; border-radius:12px; padding:1rem; font-size:1rem; font-weight:600; background:var(--ink); color:var(--lime); border:none; cursor:none; transition:all 0.25s; }
-.btn-send:hover { background:#2a2a3e; transform:translateY(-2px); }
-.form-success { display:none; background:#e1f5ee; color:#0f6e56; border-radius:12px; padding:1rem; text-align:center; font-weight:500; font-size:0.9rem; margin-top:1rem; }
-.form-success.show { display:block; animation:fadeIn 0.4s forwards; }
-
-/* FOOTER */
-footer { background:var(--ink); color:var(--white); padding:4rem 0 2.5rem; }
-.footer-inner { width:90%; max-width:1280px; margin:0 auto; }
-.footer-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:3rem; flex-wrap:wrap; gap:2rem; }
-.footer-brand .logo { color:var(--white); }
-.footer-brand .logo span { background:var(--lime); color:var(--ink); }
-.footer-brand p { font-size:0.9rem; color:rgba(255,255,255,0.5); margin-top:0.75rem; max-width:260px; }
-.footer-links h5 { font-family:var(--display); font-weight:700; font-size:0.875rem; letter-spacing:0.05em; color:rgba(255,255,255,0.5); text-transform:uppercase; margin-bottom:1rem; }
-.footer-links ul { list-style:none; display:flex; flex-direction:column; gap:0.6rem; }
-.footer-links a { font-size:0.9rem; color:rgba(255,255,255,0.75); text-decoration:none; transition:color 0.2s; }
-.footer-links a:hover { color:var(--lime); }
-.social-row { display:flex; gap:0.75rem; margin-top:1rem; }
-.soc-btn { width:40px; height:40px; border-radius:50%; border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.6); text-decoration:none; font-size:0.9rem; transition:all 0.25s; }
-.soc-btn:hover { background:var(--lime); border-color:var(--lime); color:var(--ink); transform:translateY(-3px); }
-.footer-bottom { border-top:1px solid rgba(255,255,255,0.08); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-.footer-bottom p { font-size:0.8125rem; color:rgba(255,255,255,0.4); }
-
-/* BACK TO TOP */
-.btt { position:fixed; bottom:2rem; right:2rem; width:48px; height:48px; border-radius:50%; background:var(--ink); color:var(--lime); display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:1rem; opacity:0; visibility:hidden; transition:all 0.3s; z-index:800; cursor:none; box-shadow:0 8px 20px rgba(0,0,0,0.2); }
-.btt.show { opacity:1; visibility:visible; }
-.btt:hover { transform:translateY(-3px); background:#2a2a3e; }
-
-/* MOBILE NAV OVERLAY */
-.nav-overlay { display:none; position:fixed; inset:0; background:var(--white); z-index:800; flex-direction:column; align-items:center; justify-content:center; gap:2.5rem; }
-.nav-overlay.open { display:flex; }
-.nav-overlay a { font-family:var(--display); font-size:2.5rem; font-weight:800; color:var(--ink); text-decoration:none; letter-spacing:-0.03em; }
-.nav-overlay a:hover { color:var(--teal); }
-.overlay-close { position:absolute; top:1.5rem; right:1.5rem; font-size:1.5rem; background:none; border:none; cursor:pointer; color:var(--ink); }
-
-/* RESPONSIVE */
-@media (max-width:1024px) {
-  .hero-inner { grid-template-columns:1fr; text-align:center; gap:3rem; }
-  .hero-img-wrap { justify-content:center; }
-  .hero-desc { margin-left:auto; margin-right:auto; }
-  .hero-actions { justify-content:center; }
-  .about-grid { grid-template-columns:1fr; }
-  .about-img-wrap { display:none; }
-  .about-cards { grid-template-columns:repeat(2,1fr); }
-  .contact-grid { grid-template-columns:1fr; }
-}
-@media (max-width:768px) {
-  .nav-links { display:none; }
-  .nav-toggle { display:block; }
-  .hero-stats { display:none; }
-  .projects-grid { grid-template-columns:1fr; }
-  .form-row { grid-template-columns:1fr; }
-  .footer-top { flex-direction:column; }
-  .cursor, .cursor-ring { display:none; }
-  body { cursor:auto; }
-  .btn, .nav-toggle, .btt { cursor:pointer; }
-}
-@media (max-width:480px) {
-  .about-cards { grid-template-columns:1fr; }
-  .cert-grid { grid-template-columns:1fr; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhijeet Khomane | Data Analyst & IoT Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Load Syne & DM Sans with weights 300, 400, 500, 600, 700 to ensure crisp text rendering -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="progress-bar" id="progressBar"></div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="progress-bar" id="progressBar"></div>
 
-<a href="#" class="btt" id="btt"><i class="fas fa-arrow-up"></i></a>
+  <a href="#" class="btt" id="btt"><i class="fas fa-arrow-up"></i></a>
 
-<!-- Mobile Nav Overlay -->
-<div class="nav-overlay" id="navOverlay">
-  <button class="overlay-close" id="overlayClose"><i class="fas fa-times"></i></button>
-  <a href="#about" class="nav-ol-link">About</a>
-  <a href="#skills" class="nav-ol-link">Skills</a>
-  <a href="#experience" class="nav-ol-link">Experience</a>
-  <a href="#projects" class="nav-ol-link">Projects</a>
-  <a href="#certifications" class="nav-ol-link">Certifications</a>
-  <a href="#contact" class="nav-ol-link">Contact</a>
-</div>
-
-<!-- NAV -->
-<nav id="navbar">
-  <div class="nav-inner">
-    <a href="#" class="logo">AK<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#certifications">Certifications</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+  <!-- Mobile Nav Overlay -->
+  <div class="nav-overlay" id="navOverlay">
+    <button class="overlay-close" id="overlayClose"><i class="fas fa-times"></i></button>
+    <a href="#about" class="nav-ol-link">About</a>
+    <a href="#skills" class="nav-ol-link">Skills</a>
+    <a href="#experience" class="nav-ol-link">Experience</a>
+    <a href="#projects" class="nav-ol-link">Projects</a>
+    <a href="#certifications" class="nav-ol-link">Certifications</a>
+    <a href="#contact" class="nav-ol-link">Contact</a>
   </div>
-</nav>
 
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-bg">
-    <div class="hero-blob b1"></div>
-    <div class="hero-blob b2"></div>
-  </div>
-  <div class="hero-inner">
-    <div class="hero-left">
-      <div class="hero-badge">
-        <div class="hero-badge-dot"></div>
-        Available for opportunities
-      </div>
-      <h1 class="hero-title">
-        <span class="line"><span class="word">Abhijeet</span></span>
-        <span class="line"><span class="word accent-word">Khomane</span></span>
-      </h1>
-      <div class="hero-type">
-        <span id="typedText" class="typed"></span>
-      </div>
-      <p class="hero-desc">B.Tech student specializing in Data Analytics and Business Intelligence, with hands-on experience in Power BI, Python, SQL, and Microsoft Azure. Transforming complex datasets into clear, actionable insights.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-dark"><i class="fas fa-paper-plane"></i> Get In Touch</a>
-        <a href="#projects" class="btn btn-outline"><i class="fas fa-eye"></i> View Work</a>
-      </div>
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">AK<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
     </div>
-    <div class="hero-img-wrap">
-      <div class="hero-img-ring"></div>
-      <img src="Myimage.jpg" alt="Abhijeet Khomane" class="hero-img">
-      <div class="hero-stats s1">
-        <div class="stat-num">9.48</div>
-        <div class="stat-label">T.E. CGPA</div>
-      </div>
-      <div class="hero-stats s2">
-        <div class="stat-num">3+</div>
-        <div class="stat-label">Projects Built</div>
-      </div>
-    </div>
-  </div>
-</header>
+  </nav>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-wrap">
-    <div class="about-grid">
-      <div>
-        <p class="sec-label reveal">About Me</p>
-        <h2 class="sec-title reveal">Turning data into decisions</h2>
-        <div class="sec-divider reveal"></div>
-        <div class="about-text reveal">
-          <p>I'm a dedicated <strong>Data Analyst and IoT Developer</strong> with expertise in transforming complex data into actionable insights and building innovative IoT solutions. My work focuses on delivering analytics dashboards and scalable models to support data-driven decision-making.</p>
-          <p>Currently pursuing my B.Tech in <strong>Electronics and Computer Engineering</strong> at PES's Modern College of Engineering, Pune, I bring a unique combination of hardware and software knowledge to every project.</p>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-bg">
+      <div class="hero-blob b1"></div>
+      <div class="hero-blob b2"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          Available for opportunities
         </div>
-        <div class="about-cards">
-          <div class="about-card reveal reveal-delay-1">
-            <i class="fas fa-envelope"></i>
-            <h5>Email</h5>
-            <p><a href="mailto:abhikhomane123@gmail.com">abhikhomane123@gmail.com</a></p>
-          </div>
-          <div class="about-card reveal reveal-delay-2">
-            <i class="fas fa-phone"></i>
-            <h5>Phone</h5>
-            <p>+91 76662 00956</p>
-          </div>
-          <div class="about-card reveal reveal-delay-3">
-            <i class="fab fa-linkedin"></i>
-            <h5>LinkedIn</h5>
-            <p><a href="https://linkedin.com/in/abhijeet-khomane-08a202275" target="_blank">abhijeet-khomane</a></p>
-          </div>
-          <div class="about-card reveal reveal-delay-4">
-            <i class="fab fa-github"></i>
-            <h5>GitHub</h5>
-            <p><a href="https://github.com/Abhikhomane45" target="_blank">Abhikhomane45</a></p>
-          </div>
+        <h1 class="hero-title">
+          <span class="line"><span class="word">Abhijeet</span></span>
+          <span class="line"><span class="word accent-word">Khomane</span></span>
+        </h1>
+        <div class="hero-type">
+          <span id="typedText" class="typed"></span>
+        </div>
+        <p class="hero-desc">B.Tech student specializing in Data Analytics and Business Intelligence, with hands-on experience in Power BI, Python, SQL, and Microsoft Azure. Transforming complex datasets into clear, actionable insights.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-dark"><i class="fas fa-paper-plane"></i> Get In Touch</a>
+          <a href="#projects" class="btn btn-outline"><i class="fas fa-eye"></i> View Work</a>
         </div>
       </div>
-      <div class="about-img-wrap reveal">
-        <img src="Myimage.jpg" alt="Abhijeet Khomane" class="about-img">
-        <div class="about-img-tag">
-          <div class="num">8.5</div>
-          <div class="txt">Aggregate CGPA</div>
+      <div class="hero-img-wrap">
+        <div class="hero-img-ring"></div>
+        <img src="Myimage.jpg" alt="Abhijeet Khomane" class="hero-img">
+        <div class="hero-stats s1">
+          <div class="stat-num">9.48</div>
+          <div class="stat-label">T.E. CGPA</div>
+        </div>
+        <div class="hero-stats s2">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Projects Built</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-wrap">
-    <p class="sec-label reveal">What I Know</p>
-    <h2 class="sec-title reveal">Skills & Technologies</h2>
-    <div class="sec-divider reveal"></div>
-    <div class="skills-grid">
-      <div class="skill-card reveal reveal-delay-1">
-        <div class="skill-card-icon ic-purple"><i class="fas fa-code"></i></div>
-        <h3>Programming</h3>
-        <div class="skill-pills">
-          <span class="pill">Python</span>
-          <span class="pill">Java</span>
-          <span class="pill">JavaScript</span>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-wrap">
+      <div class="about-grid">
+        <div>
+          <p class="sec-label reveal">About Me</p>
+          <h2 class="sec-title reveal">Turning data into decisions</h2>
+          <div class="sec-divider reveal"></div>
+          <div class="about-text reveal">
+            <p>I'm a dedicated <strong>Data Analyst and IoT Developer</strong> with expertise in transforming complex data into actionable insights and building innovative IoT solutions. My work focuses on delivering analytics dashboards and scalable models to support data-driven decision-making.</p>
+            <p>Currently pursuing my B.Tech in <strong>Electronics and Computer Engineering</strong> at PES's Modern College of Engineering, Pune, I bring a unique combination of hardware and software knowledge to every project.</p>
+          </div>
+          <div class="about-cards">
+            <div class="about-card reveal reveal-delay-1">
+              <i class="fas fa-envelope"></i>
+              <h5>Email</h5>
+              <p><a href="mailto:abhikhomane123@gmail.com">abhikhomane123@gmail.com</a></p>
+            </div>
+            <div class="about-card reveal reveal-delay-2">
+              <i class="fas fa-phone"></i>
+              <h5>Phone</h5>
+              <p>+91 76662 00956</p>
+            </div>
+            <div class="about-card reveal reveal-delay-3">
+              <i class="fab fa-linkedin"></i>
+              <h5>LinkedIn</h5>
+              <p><a href="https://linkedin.com/in/abhijeet-khomane-08a202275" target="_blank">abhijeet-khomane</a></p>
+            </div>
+            <div class="about-card reveal reveal-delay-4">
+              <i class="fab fa-github"></i>
+              <h5>GitHub</h5>
+              <p><a href="https://github.com/Abhikhomane45" target="_blank">Abhikhomane45</a></p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="skill-card reveal reveal-delay-2">
-        <div class="skill-card-icon ic-teal"><i class="fas fa-chart-bar"></i></div>
-        <h3>Data & Analytics</h3>
-        <div class="skill-pills">
-          <span class="pill">Power BI</span>
-          <span class="pill">Azure</span>
-          <span class="pill">Pandas</span>
-          <span class="pill">NumPy</span>
-          <span class="pill">Matplotlib</span>
-          <span class="pill">Seaborn</span>
-        </div>
-      </div>
-      <div class="skill-card reveal reveal-delay-3">
-        <div class="skill-card-icon ic-coral"><i class="fas fa-globe"></i></div>
-        <h3>Web Development</h3>
-        <div class="skill-pills">
-          <span class="pill">HTML</span>
-          <span class="pill">CSS</span>
-          <span class="pill">React</span>
-          <span class="pill">Node.js</span>
-          <span class="pill">Flask</span>
-          <span class="pill">Git</span>
-          <span class="pill">GitHub</span>
-        </div>
-      </div>
-      <div class="skill-card reveal reveal-delay-4">
-        <div class="skill-card-icon ic-blue"><i class="fas fa-database"></i></div>
-        <h3>Databases & Tools</h3>
-        <div class="skill-pills">
-          <span class="pill">MySQL</span>
-          <span class="pill">MongoDB</span>
-          <span class="pill">Linux</span>
-          <span class="pill">VS Code</span>
-          <span class="pill">IntelliJ IDEA</span>
-          <span class="pill">Cisco Packet Tracer</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-wrap">
-    <p class="sec-label reveal">My Journey</p>
-    <h2 class="sec-title reveal">Experience & Education</h2>
-    <div class="sec-divider reveal"></div>
-    <div class="timeline">
-      <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <span class="tl-date">Jan 2025 – Mar 2025</span>
-          <h3>Data Analyst Intern</h3>
-          <p class="org">KasNet Technologies · Hybrid</p>
-          <ul>
-            <li>Built and deployed 3+ interactive Power BI dashboards using DAX, enabling stakeholders to track KPIs and trends efficiently.</li>
-            <li>Cleaned and transformed 50,000+ rows of raw data using Python (Pandas, NumPy) and SQL, improving data accuracy by 95%.</li>
-            <li>Designed visualizations to highlight key insights, boosting decision-making speed by 30%.</li>
-            <li>Conducted exploratory data analysis (EDA) to identify patterns and trends, leading to actionable business recommendations.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="tl-item reveal reveal-delay-2">
-        <div class="tl-dot edu"></div>
-        <div class="tl-card">
-          <span class="tl-date edu-date">Mar 2022 – May 2026</span>
-          <h3>B.Tech — Electronics & Computer Engineering</h3>
-          <p class="org">PES's Modern College of Engineering, Pune</p>
-          <div class="cgpa">
-            <span>9.48</span> T.E. CGPA &nbsp;·&nbsp; <span>8.5</span> Aggregate CGPA
+        <div class="about-img-wrap reveal">
+          <img src="Myimage.jpg" alt="Abhijeet Khomane" class="about-img">
+          <div class="about-img-tag">
+            <div class="num">8.5</div>
+            <div class="txt">Aggregate CGPA</div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-wrap">
-    <p class="sec-label reveal">What I've Built</p>
-    <h2 class="sec-title reveal">Projects</h2>
-    <div class="sec-divider reveal"></div>
-    <div class="projects-grid">
-      <div class="proj-card reveal reveal-delay-1">
-        <div class="proj-img-wrap">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&h=300&q=80" alt="IoT Plant Disease Detection">
-          <div class="proj-overlay"><span><i class="fas fa-external-link-alt"></i> View Project</span></div>
-        </div>
-        <div class="proj-body">
-          <div class="proj-tags">
-            <span class="proj-tag">IoT</span>
-            <span class="proj-tag">OpenCV</span>
-            <span class="proj-tag">ESP32-CAM</span>
-            <span class="proj-tag">Python</span>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-wrap">
+      <p class="sec-label reveal">What I Know</p>
+      <h2 class="sec-title reveal">Skills & Technologies</h2>
+      <div class="sec-divider reveal"></div>
+      <div class="skills-grid">
+        <div class="skill-card reveal reveal-delay-1">
+          <div class="skill-card-icon ic-purple"><i class="fas fa-code"></i></div>
+          <h3>Programming</h3>
+          <div class="skill-pills">
+            <span class="pill">Python</span>
+            <span class="pill">Java</span>
+            <span class="pill">JavaScript</span>
           </div>
-          <h3>IoT-based Plant Disease Detection System</h3>
-          <ul>
-            <li>Applied OpenCV achieving over 90% detection accuracy.</li>
-            <li>Integrated temperature & humidity sensors with visual data.</li>
-            <li>Reduced detection time for farmers by 60%.</li>
-          </ul>
-          <a href="https://github.com/Abhikhomane45/IoT-based-Plant-Disease-Recognition-System-Using-ESP32-CAM" target="_blank" class="proj-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
         </div>
-      </div>
-      <div class="proj-card reveal reveal-delay-2">
-        <div class="proj-img-wrap">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&h=300&q=80" alt="Global Sales Dashboard">
-          <div class="proj-overlay"><span><i class="fas fa-chart-line"></i> View Dashboard</span></div>
-        </div>
-        <div class="proj-body">
-          <div class="proj-tags">
-            <span class="proj-tag">Power BI</span>
-            <span class="proj-tag">DAX</span>
-            <span class="proj-tag">Power Query</span>
-            <span class="proj-tag">Data Viz</span>
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-card-icon ic-teal"><i class="fas fa-chart-bar"></i></div>
+          <h3>Data & Analytics</h3>
+          <div class="skill-pills">
+            <span class="pill">Power BI</span>
+            <span class="pill">Azure</span>
+            <span class="pill">Pandas</span>
+            <span class="pill">NumPy</span>
+            <span class="pill">Matplotlib</span>
+            <span class="pill">Seaborn</span>
           </div>
-          <h3>Global Sales Performance Analysis</h3>
-          <ul>
-            <li>Visualized core metrics — sales & profit — across 2012–2015.</li>
-            <li>Implemented dynamic filters using DAX and Power Query.</li>
-            <li>Identified a 90% growth trend in key regions.</li>
-          </ul>
-          <a href="#" class="proj-link">View Dashboard <i class="fas fa-arrow-right"></i></a>
         </div>
-      </div>
-      <div class="proj-card reveal reveal-delay-3">
-        <div class="proj-img-wrap">
-          <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=600&h=300&q=80" alt="TaskFlow App">
-          <div class="proj-overlay"><span><i class="fas fa-external-link-alt"></i> Live Demo</span></div>
-        </div>
-        <div class="proj-body">
-          <div class="proj-tags">
-            <span class="proj-tag">Flask</span>
-            <span class="proj-tag">SQLite</span>
-            <span class="proj-tag">Bootstrap</span>
-            <span class="proj-tag">Python</span>
+        <div class="skill-card reveal reveal-delay-3">
+          <div class="skill-card-icon ic-coral"><i class="fas fa-globe"></i></div>
+          <h3>Web Development</h3>
+          <div class="skill-pills">
+            <span class="pill">HTML</span>
+            <span class="pill">CSS</span>
+            <span class="pill">React</span>
+            <span class="pill">Node.js</span>
+            <span class="pill">Flask</span>
+            <span class="pill">Git</span>
+            <span class="pill">GitHub</span>
           </div>
-          <h3>TaskFlow — Task Manager Web App</h3>
-          <ul>
-            <li>Flask web app with secure login and full CRUD functionality.</li>
-            <li>SQLite for persistent data storage, Bootstrap for responsive UI.</li>
-            <li>Improved task optimization & team efficiency by 40%.</li>
-          </ul>
-          <a href="https://task-flow-flask-based-task-manager.vercel.app/" target="_blank" class="proj-link">Live Demo <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="skill-card reveal reveal-delay-4">
+          <div class="skill-card-icon ic-blue"><i class="fas fa-database"></i></div>
+          <h3>Databases & Tools</h3>
+          <div class="skill-pills">
+            <span class="pill">MySQL</span>
+            <span class="pill">MongoDB</span>
+            <span class="pill">Linux</span>
+            <span class="pill">VS Code</span>
+            <span class="pill">IntelliJ IDEA</span>
+            <span class="pill">Cisco Packet Tracer</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CERTIFICATIONS -->
-<section id="certifications">
-  <div class="section-wrap">
-    <p class="sec-label reveal">Credentials</p>
-    <h2 class="sec-title reveal">Certifications & Awards</h2>
-    <div class="sec-divider reveal"></div>
-    <div class="cert-grid">
-      <div class="cert-card reveal reveal-delay-1">
-        <div class="cert-icon azure"><i class="fab fa-microsoft"></i></div>
-        <div class="cert-body">
-          <h4>Microsoft Azure Fundamentals (AZ-900)</h4>
-          <div class="issuer">Microsoft</div>
-          <span class="date">Mar 2025</span>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-wrap">
+      <p class="sec-label reveal">My Journey</p>
+      <h2 class="sec-title reveal">Experience & Education</h2>
+      <div class="sec-divider reveal"></div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <span class="tl-date">Jan 2025 – Mar 2025</span>
+            <h3>Data Analyst Intern</h3>
+            <p class="org">KasNet Technologies · Hybrid</p>
+            <ul>
+              <li>Built and deployed 3+ interactive Power BI dashboards using DAX, enabling stakeholders to track KPIs and trends efficiently.</li>
+              <li>Cleaned and transformed 50,000+ rows of raw data using Python (Pandas, NumPy) and SQL, improving data accuracy by 95%.</li>
+              <li>Designed visualizations to highlight key insights, boosting decision-making speed by 30%.</li>
+              <li>Conducted exploratory data analysis (EDA) to identify patterns and trends, leading to actionable business recommendations.</li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="cert-card reveal reveal-delay-2">
-        <div class="cert-icon nptel"><i class="fas fa-graduation-cap"></i></div>
-        <div class="cert-body">
-          <h4>Developing Soft Skills</h4>
-          <div class="issuer">NPTEL</div>
-          <span class="date">Aug 2024</span>
-        </div>
-      </div>
-      <div class="cert-card reveal reveal-delay-3">
-        <div class="cert-icon iit"><i class="fas fa-university"></i></div>
-        <div class="cert-body">
-          <h4>Java, C++, RDBMS</h4>
-          <div class="issuer">Spoken Tutorial, IIT Bombay</div>
-        </div>
-      </div>
-      <div class="cert-card reveal reveal-delay-4">
-        <div class="cert-icon hack"><i class="fas fa-terminal"></i></div>
-        <div class="cert-body">
-          <h4>SQL (Basic)</h4>
-          <div class="issuer">HackerRank</div>
-          <span class="date">Jul 2024</span>
-        </div>
-      </div>
-      <div class="cert-card reveal reveal-delay-1">
-        <div class="cert-icon award"><i class="fas fa-trophy"></i></div>
-        <div class="cert-body">
-          <h4>First Runner-Up, AiZureStack Hackathon</h4>
-          <div class="issuer">CertifyO · 2025</div>
+        <div class="tl-item reveal reveal-delay-2">
+          <div class="tl-dot edu"></div>
+          <div class="tl-card">
+            <span class="tl-date edu-date">Mar 2022 – May 2026</span>
+            <h3>B.Tech — Electronics & Computer Engineering</h3>
+            <p class="org">PES's Modern College of Engineering, Pune</p>
+            <div class="cgpa">
+              <span>9.48</span> T.E. CGPA &nbsp;·&nbsp; <span>8.5</span> Aggregate CGPA
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-wrap">
-    <p class="sec-label reveal">Say Hello</p>
-    <h2 class="sec-title reveal">Get In Touch</h2>
-    <div class="sec-divider reveal"></div>
-    <div class="contact-grid">
-      <div class="reveal">
-        <h3>Let's work together.</h3>
-        <p>I'm open to internships, freelance data analytics projects, and full-time opportunities. Whether you have a question or just want to say hi — my inbox is always open.</p>
-        <div class="contact-items">
-          <div class="contact-item">
-            <div class="c-icon"><i class="fas fa-envelope"></i></div>
-            <span class="c-text"><a href="mailto:abhikhomane123@gmail.com">abhikhomane123@gmail.com</a></span>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-wrap">
+      <p class="sec-label reveal">What I've Built</p>
+      <h2 class="sec-title reveal">Projects</h2>
+      <div class="sec-divider reveal"></div>
+      <div class="projects-grid">
+        <div class="proj-card reveal reveal-delay-1">
+          <div class="proj-img-wrap">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&h=300&q=80" alt="IoT Plant Disease Detection">
+            <div class="proj-overlay"><span><i class="fas fa-external-link-alt"></i> View Project</span></div>
           </div>
-          <div class="contact-item">
-            <div class="c-icon"><i class="fas fa-phone"></i></div>
-            <span class="c-text">+91 76662 00956</span>
+          <div class="proj-body">
+            <div class="proj-tags">
+              <span class="proj-tag">IoT</span>
+              <span class="proj-tag">OpenCV</span>
+              <span class="proj-tag">ESP32-CAM</span>
+              <span class="proj-tag">Python</span>
+            </div>
+            <h3>IoT-based Plant Disease Detection System</h3>
+            <ul>
+              <li>Applied OpenCV achieving over 90% detection accuracy.</li>
+              <li>Integrated temperature & humidity sensors with visual data.</li>
+              <li>Reduced detection time for farmers by 60%.</li>
+            </ul>
+            <a href="https://github.com/Abhikhomane45/IoT-based-Plant-Disease-Recognition-System-Using-ESP32-CAM" target="_blank" class="proj-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
           </div>
-          <div class="contact-item">
-            <div class="c-icon"><i class="fab fa-linkedin"></i></div>
-            <span class="c-text"><a href="https://linkedin.com/in/abhijeet-khomane-08a202275" target="_blank">linkedin.com/in/abhijeet-khomane</a></span>
+        </div>
+        <div class="proj-card reveal reveal-delay-2">
+          <div class="proj-img-wrap">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&h=300&q=80" alt="Global Sales Dashboard">
+            <div class="proj-overlay"><span><i class="fas fa-chart-line"></i> View Dashboard</span></div>
           </div>
-          <div class="contact-item">
-            <div class="c-icon"><i class="fab fa-github"></i></div>
-            <span class="c-text"><a href="https://github.com/Abhikhomane45" target="_blank">github.com/Abhikhomane45</a></span>
+          <div class="proj-body">
+            <div class="proj-tags">
+              <span class="proj-tag">Power BI</span>
+              <span class="proj-tag">DAX</span>
+              <span class="proj-tag">Power Query</span>
+              <span class="proj-tag">Data Viz</span>
+            </div>
+            <h3>Global Sales Performance Analysis</h3>
+            <ul>
+              <li>Visualized core metrics — sales & profit — across 2012–2015.</li>
+              <li>Implemented dynamic filters using DAX and Power Query.</li>
+              <li>Identified a 90% growth trend in key regions.</li>
+            </ul>
+            <a href="https://github.com/Abhikhomane45/Global-Sales-Performance-Analysis" target="_blank" class="proj-link">View Dashboard <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="proj-card reveal reveal-delay-3">
+          <div class="proj-img-wrap">
+            <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=600&h=300&q=80" alt="TaskFlow App">
+            <div class="proj-overlay"><span><i class="fas fa-external-link-alt"></i> Live Demo</span></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-tags">
+              <span class="proj-tag">Flask</span>
+              <span class="proj-tag">SQLite</span>
+              <span class="proj-tag">Bootstrap</span>
+              <span class="proj-tag">Python</span>
+            </div>
+            <h3>TaskFlow — Task Manager Web App</h3>
+            <ul>
+              <li>Flask web app with secure login and full CRUD functionality.</li>
+              <li>SQLite for persistent data storage, Bootstrap for responsive UI.</li>
+              <li>Improved task optimization & team efficiency by 40%.</li>
+            </ul>
+            <a href="https://task-flow-flask-based-task-manager.vercel.app/" target="_blank" class="proj-link">Live Demo <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
-      <div class="contact-form reveal reveal-delay-2">
-        <div class="form-row">
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-wrap">
+      <p class="sec-label reveal">Credentials</p>
+      <h2 class="sec-title reveal">Certifications & Awards</h2>
+      <div class="sec-divider reveal"></div>
+      <div class="cert-grid">
+        <div class="cert-card reveal reveal-delay-1">
+          <div class="cert-icon azure"><i class="fab fa-microsoft"></i></div>
+          <div class="cert-body">
+            <h4>Microsoft Azure Fundamentals (AZ-900)</h4>
+            <div class="issuer">Microsoft</div>
+            <span class="date">Mar 2025</span>
+          </div>
+        </div>
+        <div class="cert-card reveal reveal-delay-2">
+          <div class="cert-icon nptel"><i class="fas fa-graduation-cap"></i></div>
+          <div class="cert-body">
+            <h4>Developing Soft Skills</h4>
+            <div class="issuer">NPTEL</div>
+            <span class="date">Aug 2024</span>
+          </div>
+        </div>
+        <div class="cert-card reveal reveal-delay-3">
+          <div class="cert-icon iit"><i class="fas fa-university"></i></div>
+          <div class="cert-body">
+            <h4>Java, C++, RDBMS</h4>
+            <div class="issuer">Spoken Tutorial, IIT Bombay</div>
+            <span class="date">Oct 2024</span>
+          </div>
+        </div>
+        <div class="cert-card reveal reveal-delay-4">
+          <div class="cert-icon hack"><i class="fas fa-terminal"></i></div>
+          <div class="cert-body">
+            <h4>SQL (Basic)</h4>
+            <div class="issuer">HackerRank</div>
+            <span class="date">Jul 2024</span>
+          </div>
+        </div>
+        <div class="cert-card reveal reveal-delay-1">
+          <div class="cert-icon award"><i class="fas fa-trophy"></i></div>
+          <div class="cert-body">
+            <h4>First Runner-Up, AiZureStack Hackathon</h4>
+            <div class="issuer">CertifyO</div>
+            <span class="date">Jan 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-wrap">
+      <p class="sec-label reveal">Say Hello</p>
+      <h2 class="sec-title reveal">Get In Touch</h2>
+      <div class="sec-divider reveal"></div>
+      <div class="contact-grid">
+        <div class="reveal">
+          <h3>Let's work together.</h3>
+          <p>I'm open to internships, freelance data analytics projects, and full-time opportunities. Whether you have a question or just want to say hi — my inbox is always open.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="c-icon"><i class="fas fa-envelope"></i></div>
+              <span class="c-text"><a href="mailto:abhikhomane123@gmail.com">abhikhomane123@gmail.com</a></span>
+            </div>
+            <div class="contact-item">
+              <div class="c-icon"><i class="fas fa-phone"></i></div>
+              <span class="c-text">+91 76662 00956</span>
+            </div>
+            <div class="contact-item">
+              <div class="c-icon"><i class="fab fa-linkedin"></i></div>
+              <span class="c-text"><a href="https://linkedin.com/in/abhijeet-khomane-08a202275" target="_blank">linkedin.com/in/abhijeet-khomane</a></span>
+            </div>
+            <div class="contact-item">
+              <div class="c-icon"><i class="fab fa-github"></i></div>
+              <span class="c-text"><a href="https://github.com/Abhikhomane45" target="_blank">github.com/Abhikhomane45</a></span>
+            </div>
+          </div>
+        </div>
+        <!-- Semantic Form tag replace for native accessibility and autofill -->
+        <form class="contact-form reveal reveal-delay-2" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Your Name</label>
+              <input type="text" id="fname" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="femail">Your Email</label>
+              <input type="email" id="femail" placeholder="john@email.com" required>
+            </div>
+          </div>
           <div class="form-group">
-            <label>Your Name</label>
-            <input type="text" id="fname" placeholder="John Doe">
+            <label for="fsubject">Subject</label>
+            <input type="text" id="fsubject" placeholder="Project Collaboration">
           </div>
           <div class="form-group">
-            <label>Your Email</label>
-            <input type="email" id="femail" placeholder="john@email.com">
+            <label for="fmessage">Message</label>
+            <textarea id="fmessage" placeholder="Hi Abhijeet, I'd like to discuss..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-send" id="sendBtn"><i class="fas fa-paper-plane"></i> Send Message</button>
+          <div class="form-success" id="formSuccess">✅ Thanks! I'll get back to you shortly.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo">AK<span>.</span></a>
+          <p>Data Analyst & IoT Developer based in Pune, India.</p>
+          <div class="social-row">
+            <a href="https://linkedin.com/in/abhijeet-khomane-08a202275" target="_blank" class="soc-btn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/Abhikhomane45" target="_blank" class="soc-btn"><i class="fab fa-github"></i></a>
+            <a href="mailto:abhikhomane123@gmail.com" class="soc-btn"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
-        <div class="form-group">
-          <label>Subject</label>
-          <input type="text" id="fsubject" placeholder="Project Collaboration">
+        <div class="footer-links">
+          <h5>Navigate</h5>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
         </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea id="fmessage" placeholder="Hi Abhijeet, I'd like to discuss..."></textarea>
-        </div>
-        <button class="btn btn-send" id="sendBtn"><i class="fas fa-paper-plane"></i> Send Message</button>
-        <div class="form-success" id="formSuccess">✅ Thanks! I'll get back to you shortly.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#" class="logo">AK<span>.</span></a>
-        <p>Data Analyst & IoT Developer based in Pune, India.</p>
-        <div class="social-row">
-          <a href="https://linkedin.com/in/abhijeet-khomane-08a202275" target="_blank" class="soc-btn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com/Abhikhomane45" target="_blank" class="soc-btn"><i class="fab fa-github"></i></a>
-          <a href="mailto:abhikhomane123@gmail.com" class="soc-btn"><i class="fas fa-envelope"></i></a>
+        <div class="footer-links">
+          <h5>Projects</h5>
+          <ul>
+            <li><a href="https://github.com/Abhikhomane45/IoT-based-Plant-Disease-Recognition-System-Using-ESP32-CAM" target="_blank">Plant Disease Detection</a></li>
+            <li><a href="https://task-flow-flask-based-task-manager.vercel.app/" target="_blank">TaskFlow App</a></li>
+            <li><a href="https://github.com/Abhikhomane45/Global-Sales-Performance-Analysis" target="_blank">Sales Analysis Dashboard</a></li>
+          </ul>
         </div>
       </div>
-      <div class="footer-links">
-        <h5>Navigate</h5>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#certifications">Certifications</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-links">
-        <h5>Projects</h5>
-        <ul>
-          <li><a href="https://github.com/Abhikhomane45/IoT-based-Plant-Disease-Recognition-System-Using-ESP32-CAM" target="_blank">Plant Disease Detection</a></li>
-          <li><a href="https://task-flow-flask-based-task-manager.vercel.app/" target="_blank">TaskFlow App</a></li>
-          <li><a href="#">Sales Analysis Dashboard</a></li>
-        </ul>
+      <div class="footer-bottom">
+        <p>© 2025 Abhijeet Khomane. All rights reserved.</p>
+        <p>Built with HTML, CSS & JavaScript</p>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Abhijeet Khomane. All rights reserved.</p>
-      <p>Built with HTML, CSS & JavaScript</p>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script>
-// CURSOR
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
-(function animRing() {
-  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-  ring.style.left = rx+'px'; ring.style.top = ry+'px';
-  requestAnimationFrame(animRing);
-})();
-document.querySelectorAll('a, button, .proj-card, .skill-card, .cert-card').forEach(el => {
-  el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-  el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
-});
-
-// SCROLL PROGRESS
-const bar = document.getElementById('progressBar');
-window.addEventListener('scroll', () => {
-  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
-  bar.style.width = pct + '%';
-});
-
-// NAV SCROLL
-const nav = document.getElementById('navbar');
-const btt = document.getElementById('btt');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-  btt.classList.toggle('show', window.scrollY > 400);
-});
-
-// ACTIVE NAV
-const sections = document.querySelectorAll('section[id], header');
-const navAs = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let cur = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id || 'home'; });
-  navAs.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#'+cur); });
-});
-
-// MOBILE NAV
-const overlay = document.getElementById('navOverlay');
-document.getElementById('navToggle').addEventListener('click', () => overlay.classList.add('open'));
-document.getElementById('overlayClose').addEventListener('click', () => overlay.classList.remove('open'));
-document.querySelectorAll('.nav-ol-link').forEach(a => a.addEventListener('click', () => overlay.classList.remove('open')));
-
-// REVEAL ON SCROLL
-const reveals = document.querySelectorAll('.reveal');
-const ro = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
-}, { threshold: 0.12 });
-reveals.forEach(r => ro.observe(r));
-
-// TYPEWRITER
-const phrases = ['Data Analyst', 'IoT Developer', 'Power BI Expert', 'Python Developer'];
-let pi = 0, ci = 0, del = false;
-const el = document.getElementById('typedText');
-function type() {
-  const cur = phrases[pi];
-  el.textContent = del ? cur.substring(0, ci--) : cur.substring(0, ci++);
-  if (!del && ci > cur.length) { del = true; setTimeout(type, 1400); return; }
-  if (del && ci < 0) { del = false; pi = (pi+1) % phrases.length; setTimeout(type, 400); return; }
-  setTimeout(type, del ? 50 : 90);
-}
-setTimeout(type, 1200);
-
-// FORM
-document.getElementById('sendBtn').addEventListener('click', () => {
-  const n = document.getElementById('fname').value.trim();
-  const e = document.getElementById('femail').value.trim();
-  if (!n || !e) { alert('Please fill in your name and email.'); return; }
-  document.getElementById('formSuccess').classList.add('show');
-  document.getElementById('fname').value = '';
-  document.getElementById('femail').value = '';
-  document.getElementById('fsubject').value = '';
-  document.getElementById('fmessage').value = '';
-});
-</script>
+  <script src="js/script.js" defer></script>
 </body>
 </html>
