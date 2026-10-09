@@ -13,15 +13,15 @@
 </head>
 <body>
 
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
   <div class="progress-bar" id="progressBar"></div>
 
-  <a href="#" class="btt" id="btt"><i class="fas fa-arrow-up"></i></a>
+  <a href="#" class="btt" id="btt" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
 
   <!-- Mobile Nav Overlay -->
-  <div class="nav-overlay" id="navOverlay">
-    <button class="overlay-close" id="overlayClose"><i class="fas fa-times"></i></button>
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <button class="overlay-close" id="overlayClose" aria-label="Close navigation"><i class="fas fa-times"></i></button>
     <a href="#about" class="nav-ol-link">About</a>
     <a href="#skills" class="nav-ol-link">Skills</a>
     <a href="#experience" class="nav-ol-link">Experience</a>
@@ -42,7 +42,7 @@
         <li><a href="#certifications">Certifications</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+      <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false" aria-controls="navOverlay"><i class="fas fa-bars"></i></button>
     </div>
   </nav>
 
@@ -75,11 +75,11 @@
         <div class="hero-img-ring"></div>
         <img src="Myimage.jpg" alt="Abhijeet Khomane" class="hero-img">
         <div class="hero-stats s1">
-          <div class="stat-num">9.48</div>
-          <div class="stat-label">T.E. CGPA</div>
+          <div class="stat-num">9.88</div>
+          <div class="stat-label">Latest SGPA</div>
         </div>
         <div class="hero-stats s2">
-          <div class="stat-num">3+</div>
+          <div class="stat-num">4</div>
           <div class="stat-label">Projects Built</div>
         </div>
       </div>
@@ -112,19 +112,19 @@
             <div class="about-card reveal reveal-delay-3">
               <i class="fab fa-linkedin"></i>
               <h5>LinkedIn</h5>
-              <p><a href="https://linkedin.com/in/abhijeet-khomane-08a202275" target="_blank">abhijeet-khomane</a></p>
+              <p>              <a href="https://linkedin.com/in/abhijeet-khomane-08a202275" target="_blank" rel="noopener noreferrer">abhijeet-khomane</a></p>
             </div>
             <div class="about-card reveal reveal-delay-4">
               <i class="fab fa-github"></i>
               <h5>GitHub</h5>
-              <p><a href="https://github.com/Abhikhomane45" target="_blank">Abhikhomane45</a></p>
+              <p>              <a href="https://github.com/Abhikhomane45" target="_blank" rel="noopener noreferrer">Abhikhomane45</a></p>
             </div>
           </div>
         </div>
         <div class="about-img-wrap reveal">
           <img src="Myimage.jpg" alt="Abhijeet Khomane" class="about-img">
           <div class="about-img-tag">
-            <div class="num">8.5</div>
+            <div class="num">8.7</div>
             <div class="txt">Aggregate CGPA</div>
           </div>
         </div>
@@ -199,25 +199,27 @@
         <div class="tl-item reveal">
           <div class="tl-dot"></div>
           <div class="tl-card">
-            <span class="tl-date">Jan 2025 – Mar 2025</span>
+            <span class="tl-date">May 2026 – July 2026</span>
             <h3>Data Analyst Intern</h3>
-            <p class="org">KasNet Technologies · Hybrid</p>
+            <p class="org">SpacECE India Foundation · Internship</p>
+            <p class="experience-meta"><span><i class="fas fa-location-dot" aria-hidden="true"></i> Pune, Maharashtra, India</span><span><i class="fas fa-building" aria-hidden="true"></i> Hybrid</span></p>
             <ul>
-              <li>Built and deployed 3+ interactive Power BI dashboards using DAX, enabling stakeholders to track KPIs and trends efficiently.</li>
-              <li>Cleaned and transformed 50,000+ rows of raw data using Python (Pandas, NumPy) and SQL, improving data accuracy by 95%.</li>
-              <li>Designed visualizations to highlight key insights, boosting decision-making speed by 30%.</li>
-              <li>Conducted exploratory data analysis (EDA) to identify patterns and trends, leading to actionable business recommendations.</li>
+              <li>Analyzed program data using Microsoft Excel, Power BI, and Python to generate actionable insights and interactive dashboards.</li>
+              <li>Supported Monitoring & Evaluation (M&E) initiatives for Early Childhood Development (ECD) programs through comprehensive data analysis.</li>
+              <li>Collaborated with program managers and field teams to improve data quality and reporting accuracy, facilitating evidence-based decision-making.</li>
             </ul>
           </div>
         </div>
         <div class="tl-item reveal reveal-delay-2">
           <div class="tl-dot edu"></div>
           <div class="tl-card">
-            <span class="tl-date edu-date">Mar 2022 – May 2026</span>
-            <h3>B.Tech — Electronics & Computer Engineering</h3>
+            <span class="tl-date edu-date">Education</span>
+            <h3>B.Tech in Electronics and Computer Engineering</h3>
             <p class="org">PES's Modern College of Engineering, Pune</p>
             <div class="cgpa">
-              <span>9.48</span> T.E. CGPA &nbsp;·&nbsp; <span>8.5</span> Aggregate CGPA
+              <span>9.88 / 10</span> Latest SGPA
+              <span class="score-separator" aria-hidden="true"></span>
+              <span>8.7 / 10</span> Aggregate CGPA
             </div>
           </div>
         </div>
@@ -250,31 +252,71 @@
               <li>Integrated temperature & humidity sensors with visual data.</li>
               <li>Reduced detection time for farmers by 60%.</li>
             </ul>
-            <a href="https://github.com/Abhikhomane45/IoT-based-Plant-Disease-Recognition-System-Using-ESP32-CAM" target="_blank" class="proj-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+            <a href="https://github.com/Abhikhomane45/IoT-based-Plant-Disease-Recognition-System-Using-ESP32-CAM" target="_blank" rel="noopener noreferrer" class="proj-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         <div class="proj-card reveal reveal-delay-2">
           <div class="proj-img-wrap">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&h=300&q=80" alt="Global Sales Dashboard">
-            <div class="proj-overlay"><span><i class="fas fa-chart-line"></i> View Dashboard</span></div>
+            <div class="proj-art surveillance-art" aria-hidden="true">
+              <i class="fas fa-video camera-icon"></i>
+              <span class="scan-line"></span>
+              <span class="detection-box"></span>
+              <span class="signal-dot"></span>
+              <span class="art-caption">VISION · DETECT · ALERT</span>
+            </div>
+            <div class="proj-overlay"><span><i class="fas fa-shield-halved"></i> AI · IoT · Computer Vision</span></div>
           </div>
           <div class="proj-body">
             <div class="proj-tags">
-              <span class="proj-tag">Power BI</span>
-              <span class="proj-tag">DAX</span>
-              <span class="proj-tag">Power Query</span>
-              <span class="proj-tag">Data Viz</span>
+              <span class="proj-tag">FastAPI</span>
+              <span class="proj-tag">Flask</span>
+              <span class="proj-tag">YOLOv8</span>
+              <span class="proj-tag">OpenCV</span>
+              <span class="proj-tag">ESP32-CAM</span>
+              <span class="proj-tag">Firebase</span>
+              <span class="proj-tag">Cloudinary</span>
+              <span class="proj-tag">Node.js</span>
+              <span class="proj-tag">Arduino IDE (C++)</span>
             </div>
-            <h3>Global Sales Performance Analysis</h3>
+            <div class="proj-heading-row"><h3>AI-Powered Embedded Surveillance System for Crime Detection</h3><span class="project-date">February 2026</span></div>
             <ul>
-              <li>Visualized core metrics — sales & profit — across 2012–2015.</li>
-              <li>Implemented dynamic filters using DAX and Power Query.</li>
-              <li>Identified a 90% growth trend in key regions.</li>
+              <li>Developed an AI-based surveillance system using ESP32-CAM and Arduino IDE (C++) for real-time image capture.</li>
+              <li>Integrated YOLOv8 pose estimation and weapon detection models via OpenCV for suspicious-activity detection.</li>
+              <li>Built a FastAPI/Flask backend with REST API communication and real-time alert generation.</li>
             </ul>
-            <a href="https://github.com/Abhikhomane45/Global-Sales-Performance-Analysis" target="_blank" class="proj-link">View Dashboard <i class="fas fa-arrow-right"></i></a>
+            <a href="https://github.com/Abhikhomane45/AI-Embedded-Crime-Detection-System" target="_blank" rel="noopener noreferrer" class="proj-link">GitHub Repository <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         <div class="proj-card reveal reveal-delay-3">
+          <div class="proj-img-wrap">
+            <div class="proj-art learning-art" aria-hidden="true">
+              <div class="report-window">
+                <span class="report-title"></span>
+                <span class="report-filter"></span>
+                <span class="report-chart"><i></i><i></i><i></i><i></i><i></i></span>
+                <span class="report-legend"></span>
+              </div>
+              <span class="art-caption">LEARNING OUTCOMES · BASELINE / ENDLINE</span>
+            </div>
+            <div class="proj-overlay"><span><i class="fas fa-chart-column"></i> Learning Outcomes Dashboard</span></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-tags">
+              <span class="proj-tag">Microsoft Power BI</span>
+              <span class="proj-tag">DAX</span>
+              <span class="proj-tag">Power Query</span>
+              <span class="proj-tag">Microsoft Excel</span>
+            </div>
+            <div class="proj-heading-row"><h3>Learning Outcome Dashboard</h3><span class="project-category">Data Analytics / Business Intelligence</span></div>
+            <p class="proj-description">Developed interactive Power BI dashboards to analyze student learning outcomes by comparing baseline and endline assessments. The reports help stakeholders explore learning progress and assessment performance across educational programs.</p>
+            <div class="proj-actions">
+              <a href="https://github.com/Abhikhomane45/Learning_Outcome_Dashboard" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fab fa-github" aria-hidden="true"></i> GitHub Repository</a>
+              <a href="https://app.powerbi.com/view?r=eyJrIjoiNWY1MWU5Y2YtZGY1Yy00MzZjLWI2YzMtM2Q4MzNmZWFlOTAxIiwidCI6IjI0YjllOTQwLTMzMzktNDFmOS1hNjU1LTk5MTVmYTY0ODc3YyJ9" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i> View FLN Dashboard</a>
+              <a href="https://app.powerbi.com/view?r=eyJrIjoiZWQ4ZjMyNTEtNTRhMi00YzkxLTliOTQtZmI2MzY1MTViNWI3IiwidCI6IjI0YjllOTQwLTMzMzktNDFmOS1hNjU1LTk5MTVmYTY0ODc3YyJ9" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i> View Remedial Dashboard</a>
+            </div>
+          </div>
+        </div>
+        <div class="proj-card reveal reveal-delay-4">
           <div class="proj-img-wrap">
             <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=600&h=300&q=80" alt="TaskFlow App">
             <div class="proj-overlay"><span><i class="fas fa-external-link-alt"></i> Live Demo</span></div>
@@ -292,7 +334,7 @@
               <li>SQLite for persistent data storage, Bootstrap for responsive UI.</li>
               <li>Improved task optimization & team efficiency by 40%.</li>
             </ul>
-            <a href="https://task-flow-flask-based-task-manager.vercel.app/" target="_blank" class="proj-link">Live Demo <i class="fas fa-arrow-right"></i></a>
+            <a href="https://task-flow-flask-based-task-manager.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-link">Live Demo <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -371,11 +413,11 @@
             </div>
             <div class="contact-item">
               <div class="c-icon"><i class="fab fa-linkedin"></i></div>
-              <span class="c-text"><a href="https://linkedin.com/in/abhijeet-khomane-08a202275" target="_blank">linkedin.com/in/abhijeet-khomane</a></span>
+              <span class="c-text"><a href="https://linkedin.com/in/abhijeet-khomane-08a202275" target="_blank" rel="noopener noreferrer">linkedin.com/in/abhijeet-khomane</a></span>
             </div>
             <div class="contact-item">
               <div class="c-icon"><i class="fab fa-github"></i></div>
-              <span class="c-text"><a href="https://github.com/Abhikhomane45" target="_blank">github.com/Abhikhomane45</a></span>
+              <span class="c-text"><a href="https://github.com/Abhikhomane45" target="_blank" rel="noopener noreferrer">github.com/Abhikhomane45</a></span>
             </div>
           </div>
         </div>
@@ -414,8 +456,8 @@
           <a href="#" class="logo">AK<span>.</span></a>
           <p>Data Analyst & IoT Developer based in Pune, India.</p>
           <div class="social-row">
-            <a href="https://linkedin.com/in/abhijeet-khomane-08a202275" target="_blank" class="soc-btn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/Abhikhomane45" target="_blank" class="soc-btn"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/abhijeet-khomane-08a202275" target="_blank" rel="noopener noreferrer" class="soc-btn" aria-label="LinkedIn profile"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/Abhikhomane45" target="_blank" rel="noopener noreferrer" class="soc-btn" aria-label="GitHub profile"><i class="fab fa-github"></i></a>
             <a href="mailto:abhikhomane123@gmail.com" class="soc-btn"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
@@ -433,9 +475,10 @@
         <div class="footer-links">
           <h5>Projects</h5>
           <ul>
-            <li><a href="https://github.com/Abhikhomane45/IoT-based-Plant-Disease-Recognition-System-Using-ESP32-CAM" target="_blank">Plant Disease Detection</a></li>
-            <li><a href="https://task-flow-flask-based-task-manager.vercel.app/" target="_blank">TaskFlow App</a></li>
-            <li><a href="https://github.com/Abhikhomane45/Global-Sales-Performance-Analysis" target="_blank">Sales Analysis Dashboard</a></li>
+            <li><a href="https://github.com/Abhikhomane45/IoT-based-Plant-Disease-Recognition-System-Using-ESP32-CAM" target="_blank" rel="noopener noreferrer">Plant Disease Detection</a></li>
+            <li><a href="https://task-flow-flask-based-task-manager.vercel.app/" target="_blank" rel="noopener noreferrer">TaskFlow App</a></li>
+            <li><a href="https://github.com/Abhikhomane45/AI-Embedded-Crime-Detection-System" target="_blank" rel="noopener noreferrer">AI Surveillance System</a></li>
+            <li><a href="https://github.com/Abhikhomane45/Learning_Outcome_Dashboard" target="_blank" rel="noopener noreferrer">Learning Outcome Dashboard</a></li>
           </ul>
         </div>
       </div>

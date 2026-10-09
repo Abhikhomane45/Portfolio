@@ -76,36 +76,54 @@ document.addEventListener('DOMContentLoaded', () => {
   const navToggle = document.getElementById('navToggle');
   const overlayClose = document.getElementById('overlayClose');
 
-  if (overlay) {
-    if (navToggle) {
-      navToggle.addEventListener('click', () => overlay.classList.add('open'));
-    }
+  if (overlay && navToggle) {
+    const closeMenu = (restoreFocus = true) => {
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden', 'true');
+      navToggle.setAttribute('aria-expanded', 'false');
+      if (restoreFocus) navToggle.focus();
+    };
+
+    navToggle.addEventListener('click', () => {
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      navToggle.setAttribute('aria-expanded', 'true');
+      if (overlayClose) overlayClose.focus();
+    });
+
     if (overlayClose) {
-      overlayClose.addEventListener('click', () => overlay.classList.remove('open'));
+      overlayClose.addEventListener('click', closeMenu);
     }
     document.querySelectorAll('.nav-ol-link').forEach(a => {
-      a.addEventListener('click', () => overlay.classList.remove('open'));
+      a.addEventListener('click', () => closeMenu(false));
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
     });
   }
 
   // REVEAL ON SCROLL
   const reveals = document.querySelectorAll('.reveal');
-  const ro = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        ro.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(r => ro.observe(r));
+  if ('IntersectionObserver' in window) {
+    const ro = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          ro.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(r => ro.observe(r));
+  } else {
+    reveals.forEach(r => r.classList.add('visible'));
+  }
 
   // TYPEWRITER EFFECT
   const phrases = ['Data Analyst', 'IoT Developer', 'Power BI Expert', 'Python Developer'];
   let pi = 0, ci = 0, del = false;
   const typedEl = document.getElementById('typedText');
 
-  if (typedEl) {
+  if (typedEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     function type() {
       const cur = phrases[pi];
       typedEl.textContent = del ? cur.substring(0, ci--) : cur.substring(0, ci++);
